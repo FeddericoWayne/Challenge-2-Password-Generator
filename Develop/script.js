@@ -11,12 +11,18 @@ var originalArray = [];
 var concatArray = [];
 var shuffledString = [];
 
+
 /* Alerting users of the purpose of the App */
 alert('Press OK to Start Creating your Custom Password!');
 
 /* Asking user how many digits are needed for the random password */
+var digitCount = function() {
+  return Number(window.prompt("Please enter the number of characters you'd like your new password to be - at least 8 characters and no more than 128 characters!", "Enter a number between 8 and 128"));
+  
+};
 
-var totalDigits = Number(window.prompt("Please enter the number of characters you'd like your new password to be - at least 8 characters and no more than 128 characters!"));
+var totalDigits = digitCount();
+
 
 
 
