@@ -1,4 +1,4 @@
- /* Global variables */
+/* Global variables */
 
 /* All the possible characters for the password as an object */
 var characters = {
