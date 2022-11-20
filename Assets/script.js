@@ -1,4 +1,4 @@
-/* Global variables */
+ /* Global variables */
 
 /* All the possible characters for the password as an object */
 var characters = {
@@ -30,9 +30,9 @@ generateBtn.onclick = function() {
     location.reload();
 
   /* If users enter a non-number string */
-  //} else if (Math.round(passwordLength) !== 'NaN') {
-    //alert("Please enter a NUMBER!");
-    //location.reload();
+  } else if (isNaN(passwordLength)) {
+    alert("Please enter a NUMBER!");
+    location.reload();
   
   } else {
 
