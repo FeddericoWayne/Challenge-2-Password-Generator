@@ -1,139 +1,109 @@
 /* Global variables */
 
-var generateBtn = document.querySelector("#generate");
+/* All the possible characters for the password as an object */
+var characters = {
+  specialCharacters: " !#$%'()*+,-./:;<=>?@[]^_`{|}~",
+  numerics: "01233456789",
+  upperCaseLetters: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  lowerCaseLetters: "abcdefghijklmnopqrstuvwxyz"
+};
 
-var numerics= ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-var specialCharacters= [' ', '!', '"', '#', '$', '%', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', ']', '^', '_', '`', '{', '|', '}','~'];
-var upperCaseLetters= ['A','B','C','D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-var lowerCaseLetters= ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+var compiledString = [];
+var randomString = []; 
 
-var originalArray = [];
-var concatArray = [];
-var shuffledString = [];
+/* Alerts users to click on the button to begin password generation */
+alert("Click on the Generate Password button to begin!")
 
+/* Buttons in html */
+var generateBtn = document.querySelector("#generate"); 
+var refreshPage = document.querySelector("#refresh");
 
-/* Alerting users of the purpose of the App */
-alert('Press OK to start creating your custom password!');
+/* Function will execute upon click on Generate Password button */
+generateBtn.onclick = function() {
 
-/* Asking user how many digits are needed for the random password */
-var digitCount = function() {
-  return Number(window.prompt("Please enter the number of characters you'd like your new password to be:", "Enter a number between 8 and 128"));
+  /* Asks users the number of digits they need for the password */
+  var passwordLength = window.prompt("Enter how many characters you'd like your new password to be - between 8 and 128 characters", "Enter a number between 8 and 128");
 
+  /* If users enter a number outside the 8-128 range */
+  if (Math.round(passwordLength) > 128 || Math.round(passwordLength) < 8) {
+    alert("Please enter a number between 8 and 128.");
+    location.reload();
+
+  /* If users enter a non-number string */
+  //} else if (Math.round(passwordLength) !== 'NaN') {
+    //alert("Please enter a NUMBER!");
+    //location.reload();
+  
+  } else {
+
+    /* Main password generation code block */
+    alert("Great! A new " + Math.round(passwordLength) + "-digit password coming up!");
+
+    /* Asks users if they need special characters in the password */
+    var includeSpecialCharacters = window.confirm("Would you like to include Special Characters for your new password?");
+
+    /* If the user said yes to including special characters */
+    /* Adds special characters to compiled string */
+    if (includeSpecialCharacters) {
+      compiledString += characters.specialCharacters;
+    };
+
+    /* Asks users if they need numbers in the password */
+    var includeNumbers = window.confirm("Would you like to include Numbers for your new password?");
+  
+    /* If the user said yes to including numbers */
+    /* Adds numbers to compiled string */
+    if (includeNumbers) {
+      compiledString += characters.numerics;
+    };
+    
+    /* Asks users if they need uppercase letters in the password */
+    var includeUpperCase = window.confirm("Would you like to include Uppercase Letters for your new password?");
+  
+    /* If the user said yes to including uppercase letters */
+    /* Adds uppercase letters to compiled string */
+    if (includeUpperCase) {
+      compiledString += characters.upperCaseLetters;
+    };
+  
+    /* Asks users if they need lowercase letters in the password */
+    var includeLowerCase = window.confirm("Would you like to include Lowercase Letters for your new password?");
+  
+    /* If the user said yes to including lowercase letters */
+    /* Adds lowercase letters to compiled string */
+    if (includeLowerCase) {
+      compiledString += characters.lowerCaseLetters;
+    };
+  
+    /* If the user selects none of the four character types */
+    if (!includeSpecialCharacters && !includeNumbers && !includeUpperCase && !includeLowerCase) {
+      alert("Please select at least one type of characters for your new password!");
+      location.reload();
+    };
+
+  };
+  
+  /* Randomly selecting characters in the compiled string to form password */
+  for (var x=0; x<Number(passwordLength); x++) {
+    randomString += compiledString[Math.floor(Math.random() * compiledString.length)];
+  };
   
 };
 
-var totalDigits = digitCount();
-
-
-
-
-
-var typeSelection = function() {
-  /* Asking user which of the 4 types of characters are needed */
-
-  //A
-  var includeSpecialCharacters = window.confirm("Would you like to include special characters in your new password?");
-  //B
-  var includeNumbers = window.confirm("Would you like to include numbers in your new password?");
-  //C
-  var includeUpperCase = window.confirm("Would you like to include uppercase letters in your new password?");
-  //D
-  var includeLowerCase = window.confirm("Would you like to include lowercase letters in your new password?"); 
-
-  //A
-  if (includeSpecialCharacters && !includeNumbers && !includeUpperCase && !includeLowerCase) {
-  randomArray = originalArray.concat(specialCharacters);
-  alert("Click on the Red Button to Display your New Password!");
-//AB
-  } else if (includeSpecialCharacters && includeNumbers && !includeUpperCase && !includeLowerCase) {
-  concatArray = originalArray.concat(specialCharacters, numerics);
-  alert("Click on the red button to display your new password!");
-  //AC
-  } else if (includeSpecialCharacters && !includeNumbers && includeUpperCase && !includeLowerCase) {
-  concatArray = originalArray.concat(specialCharacters,upperCaseLetters);
-  alert("Click on the red button to display your new password!");
-  //AD
-  } else if (includeSpecialCharacters && !includeNumbers && !includeUpperCase && includeLowerCase) {
-  concatArray = originalArray.concat(specialCharacters,lowerCaseLetters);
-  alert("Click on the red button to display your new password!");
-  //ABC  
-  } else if (includeSpecialCharacters && includeNumbers && includeUpperCase && !includeLowerCase) {
-  concatArray = originalArray.concat(specialCharacters,numerics,upperCaseLetters);
-  alert("Click on the red button to display your new password!");
-  //ABD
-  } else if (includeSpecialCharacters && includeNumbers && !includeUpperCase && includeLowerCase) {
-  concatArray = originalArray.concat(specialCharacters,numerics,lowerCaseLetters);
-  alert("Click on the red button to display your new password!");
-  //ACD
-  } else if (includeSpecialCharacters && !includeNumbers && includeUpperCase && includeLowerCase) {
-  concatArray = originalArray.concat(specialCharacters,upperCaseLetters,lowerCaseLetters);
-  alert("Click on the red button to display your new password!");
-  //ABCD
-  } else if (includeSpecialCharacters && includeNumbers && includeUpperCase && includeLowerCase) {
-  concatArray = originalArray.concat(specialCharacters,numerics,upperCaseLetters,lowerCaseLetters);
-  alert("Click on the red button to display your new password!");
-  //B
-  } else if (!includeSpecialCharacters && includeNumbers && !includeUpperCase && !includeLowerCase) {
-  concatArray = originalArray.concat(numerics);
-  alert("Click on the red button to display your new password!");
-  //BC
-  } else if (!includeSpecialCharacters && includeNumbers && includeUpperCase && !includeLowerCase) {
-  concatArray = originalArray.concat(numerics,upperCaseLetters);
-  alert("Click on the red button to display your new password!");
-  //BD
-  } else if (!includeSpecialCharacters && includeNumbers && !includeUpperCase && includeLowerCase) {
-  concatArray = originalArray.concat(numerics,lowerCaseLetters);
-  alert("Click on the red button to display your new password!");
-  //BCD
-  } else if (!includeSpecialCharacters && includeNumbers && includeUpperCase && includeLowerCase) {
-  concatArray = originalArray.concat(numerics,upperCaseLetters,lowerCaseLetters);
-  alert("Click on the red button to display your new password!");
-  //C
-  } else if (!includeSpecialCharacters && !includeNumbers && includeUpperCase && !includeLowerCase) {
-  concatArray = originalArray.concat(upperCaseLetters);
-  alert("Click on the red button to display your new password!");
-  //CD
-  } else if (!includeSpecialCharacters && !includeNumbers && includeUpperCase && includeLowerCase) {
-  concatArray = originalArray.concat(upperCaseLetters,lowerCaseLetters);
-  alert("Click on the red button to display your new password!");
-  //D
-  } else if (!includeSpecialCharacters && !includeNumbers && !includeUpperCase && includeLowerCase) {
-  concatArray = originalArray.concat(lowerCaseLetters);
-  alert("Click on the red button to display your new password!");
-  //None Selected
-  } else {
-  alert("Please select at least one type of characters for your new password.");
-  typeSelection();
-  }
-};
-
-/* Compiles master array of selected characters */
-typeSelection(); 
-
-/* Randomly selects items in randomArray to get randomized items into a string */
-var generatePassword = function() {
-
-  for (var i=0 ; i<totalDigits; i++) {
-    var randomSelect = concatArray[Math.floor(Math.random()*concatArray.length)];
-    shuffledString = shuffledString + randomSelect;
-  }
- 
-};
-
-/* Generates password */
-generatePassword();
-
-/* Adds an EventListener to act on click */
-generateBtn.addEventListener("click", writePassword);
-
-/* Writes the generated password into textarea */
+/* Pushes the generated password into the textarea of the webpage */
 function writePassword() {
-  var password = shuffledString;
-  var passwordText = document.querySelector('#password');
-  passwordText.value = password;
-
+    var password = randomString;
+    var passwordText = document.querySelector("#password");
+    passwordText.value = password;
+  
 };
 
-
-
+/* When users click on Start Over button */
+function refresh() {
+  location.reload();
+};
+  
+/* Adds EventListeners to the two buttons */
+generateBtn.addEventListener("click", writePassword);
+refreshPage.addEventListener("click", refresh);
 
