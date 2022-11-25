@@ -19,7 +19,7 @@ var generateBtn = document.querySelector("#generate");
 var refreshPage = document.querySelector("#refresh");
 
 /* Function will execute upon click on Generate Password button */
-generateBtn.onclick = function() {
+generateBtn.addEventListener("click", function() {
 
   /* Asks users the number of digits they need for the password */
   var passwordLength = window.prompt("Enter how many characters you'd like your new password to be - between 8 and 128 characters", "Enter a number between 8 and 128");
@@ -88,12 +88,14 @@ generateBtn.onclick = function() {
     randomString += compiledString[Math.floor(Math.random() * compiledString.length)];
   };
   
-};
+});
+
+
 
 /* Pushes the generated password into the textarea of the webpage */
 function writePassword() {
-    var password = randomString;
     var passwordText = document.querySelector("#password");
+    var password = randomString;
     passwordText.value = password;
   
 };
@@ -106,4 +108,11 @@ function refresh() {
 /* Adds EventListeners to the two buttons */
 generateBtn.addEventListener("click", writePassword);
 refreshPage.addEventListener("click", refresh);
+
+
+
+
+
+
+
 
