@@ -1,100 +1,33 @@
-# 03 JavaScript: Password Generator
+# Challenge 2: Password Generator
 
-## Your Task
+## Description
 
-This week's Challenge requires you to modify starter code to create an application that enables employees to generate random passwords based on criteria that they’ve selected. This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean and polished, responsive user interface that adapts to multiple screen sizes.
+This is a webpage used to generate random passwords. When users first load the webpage, they'll be alerted to click on the Generate Password button to start the process. Once they click on the button, they will be prompted to answer how many characters they'd like for their new password - within the range of 8-128 characters. If they enter a non-numeric or out-of-range number, they will be prompted accordingly to try again and the page will reload. (Note: this webpage will automatically round up any floating number.) If they enter the number correctly within the 8-128 range, they will then be prompted to confirm if they'd like to include special characters, numbers, uppercase letters, and lowercase letters. If they click on confirm on a character type, that character type will be included for password generation. If they click on cancel on a character type, that character type will be excluded for the password generation. If they click on cancel for all four charcter types, they will be prompted to select at least one character type, and the page will reload for them to try again.
 
-The password can include special characters. If you’re unfamiliar with these, see this [list of password special characters](https://www.owasp.org/index.php/Password_special_characters) from the OWASP Foundation.
+Once the users finish answering the prompts for character types, a new random password will be displayed in the textarea. At this point, the user can choose to generate another set of password by clicking on the Start Over button, which will reload the page.
 
-## User Story
+The URL of the deployed, refactored webpage is can be found at: https://feddericowayne.github.io/Challenge-2-Password-Generator/
 
-```
-AS AN employee with access to sensitive data
-I WANT to randomly generate a password that meets certain criteria
-SO THAT I can create a strong password that provides greater security
-```
+Here's a screenshot of the webpage:
 
-## Acceptance Criteria
+![image](./Assets/Screenshot.png)
 
-```
-GIVEN I need a new, secure password
-WHEN I click the button to generate a password
-THEN I am presented with a series of prompts for password criteria
-WHEN prompted for password criteria
-THEN I select which criteria to include in the password
-WHEN prompted for the length of the password
-THEN I choose a length of at least 8 characters and no more than 128 characters
-WHEN asked for character types to include in the password
-THEN I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
-WHEN I answer each prompt
-THEN my input should be validated and at least one character type should be selected
-WHEN all prompts are answered
-THEN a password is generated that matches the selected criteria
-WHEN the password is generated
-THEN the password is either displayed in an alert or written to the page
-```
+## Installation
 
-## Mock-Up
+N/A
 
-The following image shows the web application's appearance and functionality:
+## Usage
 
-![The Password Generator application displays a red button to "Generate Password".](./Assets/03-javascript-homework-demo.png)
+This webpage is used to generate random, secure passwords whose length is between 8 and 128 characters. 
 
-## Grading Requirements
+This webpage comes with an html file, a css stylesheet, and a JavaScript file.
 
-> **Note**: If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
->
-> * A repository that has no code
->
-> * A repository that includes a unique name but nothing else
->
-> * A repository that includes only a README file but nothing else
->
-> * A repository that only includes starter code
 
-This Challenge is graded based on the following criteria: 
+## Credits
 
-### Technical Acceptance Criteria: 40%
+N/A
 
-* Satisfies all of the preceding acceptance criteria.
+## License
 
-### Deployment: 32%
+Please refer to the LICENSE in the repo.
 
-* Application deployed at live URL.
-
-* Application loads with no errors.
-
-* Application GitHub URL submitted.
-
-* GitHub repository that contains application code.
-
-### Application Quality: 15%
-
-* Application user experience is intuitive and easy to navigate.
-
-* Application user interface style is clean and polished.
-
-* Application resembles the mock-up functionality provided in the Challenge instructions.
-
-### Repository Quality: 13%
-
-* Repository has a unique name.
-
-* Repository follows best practices for file structure and naming conventions.
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages.
-
-* Repository contains quality readme file with description, screenshot, and link to deployed application.
-
-## Review
-
-You are required to submit the following for review:
-
-* The URL of the deployed application.
-
-* The URL of the GitHub repository, with a unique name and a readme describing the project.
-
-- - -
-© 2022 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
