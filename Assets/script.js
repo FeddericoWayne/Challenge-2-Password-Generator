@@ -6,9 +6,6 @@ var refreshPage = document.querySelector("#refresh");
 /* Password Textarea */
 var passwordText = document.querySelector("#password");
 
-/* For registering passwords */
-//var compiledString = [];
-//var randomString = []; 
 
 /* All the possible characters for the password as an object */
 var characters = {
