@@ -1,4 +1,14 @@
 /* Global variables */
+/* Buttons in html */
+var startProcess = document.querySelector("#generate"); 
+var refreshPage = document.querySelector("#refresh");
+
+/* Password Textarea */
+var passwordText = document.querySelector("#password");
+
+/* For registering passwords */
+//var compiledString = [];
+//var randomString = []; 
 
 /* All the possible characters for the password as an object */
 var characters = {
@@ -8,18 +18,17 @@ var characters = {
   lowerCaseLetters: "abcdefghijklmnopqrstuvwxyz"
 };
 
-var compiledString = [];
-var randomString = []; 
-
 /* Alerts users to click on the button to begin password generation */
 alert("Click on the Generate Password button to begin!")
 
-/* Buttons in html */
-var generateBtn = document.querySelector("#generate"); 
-var refreshPage = document.querySelector("#refresh");
-
 /* Function will execute upon click on Generate Password button */
-generateBtn.addEventListener("click", function() {
+function generatePassword() {
+
+  var compiledString = [];
+  var randomString = []; 
+
+  /*clearing out any previously generated passwords */
+  passwordText.value = "";
 
   /* Asks users the number of digits they need for the password */
   var passwordLength = window.prompt("Enter how many characters you'd like your new password to be - between 8 and 128 characters", "Enter a number between 8 and 128");
@@ -82,23 +91,20 @@ generateBtn.addEventListener("click", function() {
     };
 
   };
+
+  
   
   /* Randomly selecting characters in the compiled string to form password */
   for (var x=0; x<Number(passwordLength); x++) {
     randomString += compiledString[Math.floor(Math.random() * compiledString.length)];
   };
-  
-});
 
-
-
-/* Pushes the generated password into the textarea of the webpage */
-function writePassword() {
-    var passwordText = document.querySelector("#password");
-    var password = randomString;
-    passwordText.value = password;
+  /* Pushes the generated password into the textarea of the webpage */
+  var password = randomString;
+  passwordText.value = password;
   
 };
+
 
 /* When users click on Start Over button */
 function refresh() {
@@ -106,7 +112,7 @@ function refresh() {
 };
   
 /* Adds EventListeners to the two buttons */
-generateBtn.addEventListener("click", writePassword);
+startProcess.addEventListener("click", generatePassword);
 refreshPage.addEventListener("click", refresh);
 
 
